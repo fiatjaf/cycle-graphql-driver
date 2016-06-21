@@ -1,7 +1,7 @@
 {
   "name": "cycle-graphql-most-driver",
   "version": "0.0.1",
-  "description": "",
+  "description": "A simple, Apollo-based, GraphQL driver to be used with Cycle's most-run",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
