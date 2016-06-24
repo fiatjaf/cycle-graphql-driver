@@ -1,6 +1,7 @@
 {
   "name": "cycle-graphql-most-driver",
-  "version": "0.0.1",
+  "sourceType": "module",
+  "version": "0.0.2",
   "description": "A simple, Apollo-based, GraphQL driver to be used with Cycle's most-run",
   "main": "index.js",
   "scripts": {
@@ -9,6 +10,16 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/fiatjaf/cycle-graphql-most-driver.git"
+  },
+  "browserify": {
+    "transform": [
+      "babelify"
+    ]
+  },
+  "babel": {
+    "presets": [
+      "es2015"
+    ]
   },
   "keywords": [
     "cycle",
@@ -22,6 +33,12 @@
   },
   "peerDependencies": {
     "most": "*"
+  },
+  "devDependencies": {
+    "babel-core": "^6.4.5",
+    "babel-preset-es2015": "^6.3.13",
+    "babelify": "^7.2.0",
+    "browserify": "11.0.1"
   },
   "author": "Giovanni T. Parra",
   "license": "MIT",

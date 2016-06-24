@@ -16,7 +16,7 @@ import most from 'most'
 import hold from '@most/hold'
 import Cycle from '@cycle/most-run'
 import {makeDOMDriver, h} from '@motorcycle/dom'
-import {makeGraphQLDriver, gql} from './graphql-driver'
+import {makeGraphQLDriver, gql} from 'cycle-graphql-most-driver'
 
 Cycle.run(app, {
   DOM: makeDOMDriver('#container', [
@@ -32,9 +32,10 @@ query fetchItem($id: ID!) {
     id
     name
     description
-    events
+    events {
       time
       value
+    }
   }
 }
       `,
@@ -57,7 +58,7 @@ mutation setItem($id: ID!, $name: String, $desc: String) {
 })
 
 function app ({DOM, GRAPHQL}) {
-  let response$ = GRAPHQL  
+  let response$ = GRAPHQL
     .flatMap(r$ => r$
       .recoverWith(err => most.of({errors: [err.message]}))
     )
