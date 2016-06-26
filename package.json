@@ -1,7 +1,7 @@
 {
   "name": "cycle-graphql-most-driver",
   "sourceType": "module",
-  "version": "0.0.2",
+  "version": "0.1.0",
   "description": "A simple, Apollo-based, GraphQL driver to be used with Cycle's most-run",
   "main": "index.js",
   "scripts": {

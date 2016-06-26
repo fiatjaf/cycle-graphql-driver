@@ -33,7 +33,7 @@ export function makeGraphQLDriver ({templates = {}, endpoint = '/graphql'}) {
 
     let res$$ = most.merge(
       query$
-        .map(({query, variables, forceFetch}) => {
+        .map(({query, variables, forceFetch = true}) => {
           query = templates[query] || query
           let res$ = most.fromPromise(client.query({query, variables, forceFetch}))
           return res$
