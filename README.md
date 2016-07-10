@@ -1,6 +1,6 @@
-This is a driver for all your [pure-most Cycle apps](https://github.com/cyclejs/most-run) (think[Motorcycle](https://github.com/motorcyclejs/core#merging-with-cyclejs)) that talks to a GraphQL endpoint.
+This is a driver for all your [pure-most Cycle apps](https://github.com/cyclejs/most-run) (think [Motorcycle](https://github.com/motorcyclejs/core#merging-with-cyclejs)) that talks to a GraphQL endpoint.
 
-It uses [Apollo Client][http://docs.apollostack.com/apollo-client/core.html] underneath.
+It uses [Apollo Client](http://docs.apollostack.com/apollo-client/core.html) underneath.
 
 ### Install
 
