@@ -1,8 +1,8 @@
 import ApolloClient, { createNetworkInterface } from 'apollo-client'
-import gql from 'apollo-client/gql'
+import gql from 'graphql-tag'
 import most from 'most'
 
-export {gql}
+export gql
 
 export function makeGraphQLDriver ({templates = {}, endpoint = '/graphql'}) {
   var jwt = ''

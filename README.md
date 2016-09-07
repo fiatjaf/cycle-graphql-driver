@@ -19,10 +19,7 @@ import {makeDOMDriver, h} from '@motorcycle/dom'
 import {makeGraphQLDriver, gql} from 'cycle-graphql-most-driver'
 
 Cycle.run(app, {
-  DOM: makeDOMDriver('#container', [
-    require('snabbdom/modules/props'),
-    require('snabbdom/modules/style')
-  ]),
+  DOM: makeDOMDriver('#container'),
   GRAPHQL: makeGraphQLDriver({
     endpoint: '/graphql',
     templates: {
