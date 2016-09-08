@@ -7,7 +7,7 @@ export const gql = graphqlTag
 export function makeGraphQLDriver ({templates = {}, endpoint = '/graphql'}) {
   var jwt = ''
 
-  const networkInterface = createNetworkInterface(endpoint)
+  const networkInterface = createNetworkInterface(endpoint, {credentials: 'include'})
   networkInterface.use([{
     applyMiddleware (req, next) {
       if (jwt) {
