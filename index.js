@@ -4,32 +4,30 @@ import graphqlTag from 'graphql-tag'
 
 export const gql = graphqlTag
 
-export function makeGraphQLDriver ({templates = {}, endpoint = '/graphql'}) {
-  var jwt = ''
-
+export function makeGraphQLDriver ({templates = {}, endpoint = '/graphql', includeHeaders = {}}) {
   const networkInterface = createNetworkInterface(endpoint, {credentials: 'include'})
   networkInterface.use([{
     applyMiddleware (req, next) {
-      if (jwt) {
-        if (!req.options.headers) {
-          req.options.headers = {}
-        }
-        req.options.headers.authorization = 'token ' + jwt
+      // if some header was sent through input$ it will appear here.
+      // users must make sure any necessary header is sent before actual calls.
+      if (includeHeaders) {
+        req.options.headers = includeHeaders
       }
       next()
     }
   }])
-
   const client = new ApolloClient({networkInterface})
 
   return function graphqlDriver (input$) {
+    // extract headers from the given input, if they come.
+    let headers$ = input$.filter(e => e.headers)
+    headers$.observe(s => {
+      includeHeaders= s.headers
+    })
+
+    // actually make the calls
     let query$ = input$.filter(e => e.query)
     let mutation$ = input$.filter(e => e.mutation)
-    let token$ = input$.filter(e => e.jwt)
-
-    token$.observe(s => {
-      jwt = s.jwt
-    })
 
     let res$$ = most.merge(
       query$
