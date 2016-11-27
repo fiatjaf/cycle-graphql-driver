@@ -5,7 +5,7 @@
   "description": "A simple, Apollo-based, GraphQL driver to be used with Cycle's most-run",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "./node_modules/.bin/mocha --compilers js:babel-core/register test.js"
   },
   "repository": {
     "type": "git",
@@ -24,22 +24,19 @@
   "keywords": [
     "cycle",
     "cyclejs",
-    "most",
     "driver",
     "graphql"
   ],
-  "dependencies": {
-    "apollo-client": "*",
-    "graphql-tag": "^0.1.13"
-  },
-  "peerDependencies": {
-    "most": "*"
-  },
   "devDependencies": {
+    "@cycle/most-adapter": "^4.1.0",
+    "assert": "^1.4.1",
     "babel-core": "^6.4.5",
     "babel-preset-es2015": "^6.3.13",
     "babelify": "^7.2.0",
-    "browserify": "11.0.1"
+    "browserify": "11.0.1",
+    "graphql-tag": "^1.0.0",
+    "mocha": "^3.2.0",
+    "most": "^1.1.0"
   },
   "author": "Giovanni T. Parra",
   "license": "MIT",
