@@ -1,8 +1,6 @@
 var assert = require('assert');
 
-var run = require('@cycle/most-run').default;
 var adapter = require('@cycle/most-adapter').default;
-
 var most = require('most');
 
 var gql = require('graphql-tag');
