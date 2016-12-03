@@ -1,6 +1,4 @@
-This is a driver for all your [pure-most Cycle apps](https://github.com/cyclejs/most-run) (think [Motorcycle](https://github.com/motorcyclejs/core#merging-with-cyclejs)) that talks to a GraphQL endpoint.
-
-It uses [Apollo Client](http://docs.apollostack.com/apollo-client/core.html) underneath.
+This driver expects you to pass it an [Apollo Client](http://docs.apollostack.com/apollo-client/core.html).
 
 * the graphql endpoint defaults to `/graphql`, but it can be changed by passing the `endpoint='/something'` option to `makeGraphQLDriver`;
 * `withCredentials` is enabled by default (and there's no way to change it);
@@ -12,7 +10,7 @@ It uses [Apollo Client](http://docs.apollostack.com/apollo-client/core.html) und
 ### Install
 
 ```
-npm install --save cycle-graphql-most-driver
+npm install --save cycle-graphql-driver
 ```
 
 
@@ -21,14 +19,22 @@ npm install --save cycle-graphql-most-driver
 ```javascript
 import most from 'most'
 import hold from '@most/hold'
-import Cycle from '@cycle/most-run'
+import {run} from '@cycle/most-run'
 import {makeDOMDriver, h} from '@motorcycle/dom'
-import {makeGraphQLDriver, gql} from 'cycle-graphql-most-driver'
+import ApolloClient, {createNetworkInterface} from 'apollo-client'
+import {makeGraphQLDriver, gql} from 'cycle-graphql-driver'
 
-Cycle.run(app, {
+const networkInterface = createNetworkInterface({
+  uri: '/graphql',
+  opts: {
+    credentials: 'include'
+  }
+})
+
+run(app, {
   DOM: makeDOMDriver('#container'),
   GRAPHQL: makeGraphQLDriver({
-    endpoint: '/graphql',
+    client: new ApolloClient({networkInterface}),
     templates: {
       fetchItem: gql`
 query fetchItem($id: ID!) {

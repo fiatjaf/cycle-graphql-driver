@@ -1,15 +1,15 @@
 {
   "name": "cycle-graphql-driver",
   "sourceType": "module",
-  "version": "0.4.0",
-  "description": "A simple, Apollo-based, GraphQL driver to be used with Cycle's most-run",
+  "version": "0.4.1",
+  "description": "A simple, Apollo-based, GraphQL driver to be used with Cycle",
   "main": "index.js",
   "scripts": {
     "test": "./node_modules/.bin/mocha --compilers js:babel-core/register test.js"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/fiatjaf/cycle-graphql-most-driver.git"
+    "url": "git+https://github.com/fiatjaf/cycle-graphql-driver.git"
   },
   "browserify": {
     "transform": [
@@ -41,7 +41,7 @@
   "author": "Giovanni T. Parra",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/fiatjaf/cycle-graphql-most-driver/issues"
+    "url": "https://github.com/fiatjaf/cycle-graphql-driver/issues"
   },
-  "homepage": "https://github.com/fiatjaf/cycle-graphql-most-driver#readme"
+  "homepage": "https://github.com/fiatjaf/cycle-graphql-driver#readme"
 }
