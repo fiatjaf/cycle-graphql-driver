@@ -38,7 +38,7 @@
     "mocha": "^3.2.0",
     "most": "^1.1.0"
   },
-  "author": "Giovanni T. Parra",
+  "author": "fiatjaf",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/fiatjaf/cycle-graphql-driver/issues"
