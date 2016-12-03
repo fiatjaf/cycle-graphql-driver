@@ -1,22 +1,56 @@
-var assert = require('assert');
+/* global it, describe */
 
-var adapter = require('@cycle/most-adapter').default;
-var most = require('most');
+var assert = require('assert')
+var adapter = require('@cycle/most-adapter').default
+var most = require('most')
 
-var gql = require('graphql-tag');
+var gql = require('graphql-tag')
 
-var { makeGraphQLDriver } = require('./index');
+var { makeGraphQLDriver } = require('./index')
 
 // fake ApolloClient for testing
 const client = {
-  query: ({query, variables, forFetch}) => new Promise( (resolve, reject) => {
-    resolve({id: 1, name: 'WidgetOne'});
+  query: ({query, variables, forFetch}) => new Promise((resolve, reject) => {
+    resolve({id: 1, name: 'WidgetOne'})
+  }),
+  mutate: ({mutation, variables}) => new Promise((resolve, reject) => {
+    resolve({id: 1, ok: true})
   })
-};
+}
 
-describe('GraphQL Driver', function() {
-  it('should return an item', function(done) {
+describe('GraphQL Driver', function () {
+  it('should save an item', function (done) {
+    var graphQLDriver = makeGraphQLDriver({
+      client: client,
+      templates: {
+        saveItem: gql`
+         mutation saveItem($id: ID!, $name: String!) {
+           saveItem(id: $id, name: $name) {
+             id
+             ok
+           }
+         }`
+      }
+    })
 
+    var input = most.from([{
+      mutation: 'saveItem',
+      variables: {
+        id: 1,
+        name: 'WidgetOne'
+      }
+    }])
+
+    var output = graphQLDriver(input, adapter)
+
+    output.forEach(({id, ok}) => {
+      assert.equal(id, 1)
+      assert.equal(ok, true)
+      done()
+    })
+  })
+
+  it('should return an item', function (done) {
     var graphQLDriver = makeGraphQLDriver({
       client: client,
       templates: {
@@ -28,7 +62,7 @@ describe('GraphQL Driver', function() {
            }
          }`
       }
-    });
+    })
 
     var input = most.from([{
       query: 'fetchItem',
@@ -37,13 +71,12 @@ describe('GraphQL Driver', function() {
       }
     }])
 
-    var output = graphQLDriver(input, adapter);
+    var output = graphQLDriver(input, adapter)
 
-    output.forEach( ({id, name}) => {
-      assert.equal(id, 1);
-      assert.equal(name, 'WidgetOne');
-      done();
-    });
-
-  });
-});
+    output.forEach(({id, name}) => {
+      assert.equal(id, 1)
+      assert.equal(name, 'WidgetOne')
+      done()
+    })
+  })
+})

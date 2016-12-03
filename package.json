@@ -1,7 +1,7 @@
 {
   "name": "cycle-graphql-driver",
   "sourceType": "module",
-  "version": "0.4.1",
+  "version": "0.4.2",
   "description": "A simple, Apollo-based, GraphQL driver to be used with Cycle",
   "main": "index.js",
   "scripts": {
